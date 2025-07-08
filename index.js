@@ -13,7 +13,7 @@ app.use(cors({
 }));
 
 app.use((req,res,next)=>{
-  console.log("hello");
+  console.log("hello World");
   next();
 })
 

@@ -7,10 +7,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors({
-  origin: 'http://localhost:5173',
-  methods: ['GET', 'POST'],
-}));
+app.use(cors());
 
 app.use((req,res,next)=>{
   console.log("hello World");
@@ -42,12 +39,15 @@ app.post('/api/contact', async (req, res) => {
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS
+    },
+    tls: {
+      rejectUnauthorized: false, // 👈 Add this line
     }
   });
 
   const mailOptions = {
-    from: "kriishchheda00522@gmail.com",
-    to: process.env.RECEIVER_EMAIL,
+    from: "aakarshitsaxena02468@gmail.com",
+    to: "aakarshitsaxena02468@gmail.com",
     subject: `New Contact Form Submission from ${name}`,
     text: `Message: ${message}\n\nFrom: ${name} (${email})`
   };
